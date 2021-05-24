@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/deepkush97.github.io/inmemory-notes-app/static/css/main.da23f463.chunk.css",
+    "main.js": "/deepkush97.github.io/inmemory-notes-app/static/js/main.5c94b401.chunk.js",
+    "main.js.map": "/deepkush97.github.io/inmemory-notes-app/static/js/main.5c94b401.chunk.js.map",
+    "runtime-main.js": "/deepkush97.github.io/inmemory-notes-app/static/js/runtime-main.99189161.js",
+    "runtime-main.js.map": "/deepkush97.github.io/inmemory-notes-app/static/js/runtime-main.99189161.js.map",
+    "static/js/2.7356c045.chunk.js": "/deepkush97.github.io/inmemory-notes-app/static/js/2.7356c045.chunk.js",
+    "static/js/2.7356c045.chunk.js.map": "/deepkush97.github.io/inmemory-notes-app/static/js/2.7356c045.chunk.js.map",
+    "index.html": "/deepkush97.github.io/inmemory-notes-app/index.html",
+    "static/css/main.da23f463.chunk.css.map": "/deepkush97.github.io/inmemory-notes-app/static/css/main.da23f463.chunk.css.map",
+    "static/js/2.7356c045.chunk.js.LICENSE.txt": "/deepkush97.github.io/inmemory-notes-app/static/js/2.7356c045.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.99189161.js",
+    "static/js/2.7356c045.chunk.js",
+    "static/css/main.da23f463.chunk.css",
+    "static/js/main.5c94b401.chunk.js"
+  ]
+}
