@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     marginLeft: drawerWidth,
   },
   date: {
-    flexGrow: 1,
+    marginLeft: "auto",
   },
 });
 
