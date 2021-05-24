@@ -1,23 +1,5 @@
 import * as React from "react";
 
-export type CategoryType = "todo" | "reminder" | "personal" | "work";
-
-export interface ICreateNote {
-  title: string;
-  category: CategoryType;
-  details: string;
-}
-
-export interface INote extends ICreateNote {
-  id: number;
-}
-
-export type NotesContextType = {
-  notes: INote[];
-  saveNote: (todo: ICreateNote) => void;
-  deleteNote: (id: number) => void;
-};
-
 export const NotesContext = React.createContext<NotesContextType | null>(null);
 
 export const NotesProvider: React.FC<React.ReactNode> = ({ children }) => {

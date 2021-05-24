@@ -11,11 +11,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import { useHistory } from "react-router-dom";
-import {
-  NotesContext,
-  NotesContextType,
-  CategoryType,
-} from "../context/global";
+import { NotesContext } from "../context/global";
 
 const useStyles = makeStyles({
   field: {
@@ -118,7 +114,7 @@ export const Create = () => {
 
         <Button
           type="submit"
-          // color="secondary"
+          color="primary"
           variant="contained"
           endIcon={<KeyboardArrowRightIcon />}
         >
