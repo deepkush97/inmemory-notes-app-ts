@@ -1,25 +1,24 @@
 import {
   Avatar,
   Card,
+  CardActions,
   CardContent,
   CardHeader,
+  Collapse,
+  createStyles,
   IconButton,
   makeStyles,
   Theme,
   Typography,
-  CardActions,
-  Collapse,
-  createStyles,
 } from "@material-ui/core";
 import { blue, green, pink, red, yellow } from "@material-ui/core/colors";
 import { DeleteOutlined, ExpandMore } from "@material-ui/icons";
 import clsx from "clsx";
-import { FC, useContext, useState } from "react";
-import { NotesContext } from "../context/global";
-import { DeleteConfirmationDialog } from "./DeleteConfirmationDialog";
+import { FC, useState } from "react";
 
 interface NoteCardProps {
   note: INote;
+  handleDelete: () => void;
 }
 const useStyles = makeStyles<Theme, { category: CategoryType }>(
   (theme: Theme) =>
@@ -57,11 +56,9 @@ const useStyles = makeStyles<Theme, { category: CategoryType }>(
     })
 );
 
-export const NoteCard: FC<NoteCardProps> = ({ note }) => {
+export const NoteCard: FC<NoteCardProps> = ({ note, handleDelete }) => {
   const classes = useStyles(note);
-  const { deleteNote } = useContext(NotesContext) as NotesContextType;
   const [expanded, setExpanded] = useState(false);
-  const [deleteConfirmation, setDeleteConfirmation] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded((prev) => !prev);
@@ -79,7 +76,7 @@ export const NoteCard: FC<NoteCardProps> = ({ note }) => {
           action={
             <IconButton
               className={classes.deleteBtn}
-              onClick={() => setDeleteConfirmation(true)}
+              onClick={() => handleDelete()}
             >
               <DeleteOutlined />
             </IconButton>
@@ -116,11 +113,6 @@ export const NoteCard: FC<NoteCardProps> = ({ note }) => {
           </>
         )}
       </Card>
-      <DeleteConfirmationDialog
-        deleteConfirmation={deleteConfirmation}
-        closeDeleteConfirmation={() => setDeleteConfirmation(false)}
-        handleConfirmDelete={() => deleteNote(note.id)}
-      />
     </>
   );
 };
