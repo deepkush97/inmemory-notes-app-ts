@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core";
-import { Create } from "./pages/create";
-import { View } from "./pages/view";
+import { Create } from "./pages/Create";
+import { View } from "./pages/View";
 import { globalTheme } from "./theme/global";
 import { NotesProvider } from "./context/global";
 import { Layout } from "./components/Layout";
