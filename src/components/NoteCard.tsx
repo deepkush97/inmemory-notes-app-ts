@@ -14,8 +14,9 @@ import {
 import { blue, green, pink, red, yellow } from "@material-ui/core/colors";
 import { DeleteOutlined, ExpandMore } from "@material-ui/icons";
 import clsx from "clsx";
-import React, { FC, useContext } from "react";
+import { FC, useContext, useState } from "react";
 import { NotesContext } from "../context/global";
+import { DeleteConfirmationDialog } from "./DeleteConfirmationDialog";
 
 interface NoteCardProps {
   note: INote;
@@ -37,20 +38,20 @@ const useStyles = makeStyles<Theme, { category: CategoryType }>(
         minHeight: theme.spacing(2),
       },
       deleteBtn: {
-        color: red[600],
+        color: red[400],
       },
       avatar: {
         backgroundColor: ({ category }) => {
           if (category === "work") {
-            return yellow[700];
+            return yellow[400];
           }
           if (category === "personal") {
-            return green[500];
+            return green[300];
           }
           if (category === "todo") {
-            return pink[500];
+            return pink[300];
           }
-          return blue[500];
+          return blue[300];
         },
       },
     })
@@ -59,59 +60,67 @@ const useStyles = makeStyles<Theme, { category: CategoryType }>(
 export const NoteCard: FC<NoteCardProps> = ({ note }) => {
   const classes = useStyles(note);
   const { deleteNote } = useContext(NotesContext) as NotesContextType;
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [deleteConfirmation, setDeleteConfirmation] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded((prev) => !prev);
   };
 
   return (
-    <Card>
-      <CardHeader
-        avatar={
-          <Avatar className={classes.avatar}>
-            {note.category[0].toUpperCase()}
-          </Avatar>
-        }
-        action={
-          <IconButton
-            className={classes.deleteBtn}
-            onClick={() => deleteNote(note.id)}
-          >
-            <DeleteOutlined />
-          </IconButton>
-        }
-        title={note.title}
-        subheader={note.category}
-      />
-      <CardContent className={classes.content}>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {note.details.length > 30
-            ? `${note.details.substr(0, 30)}...`
-            : note.details}
-        </Typography>
-      </CardContent>
-      {note.details.length > 30 && (
-        <>
-          <CardActions disableSpacing>
+    <>
+      <Card>
+        <CardHeader
+          avatar={
+            <Avatar className={classes.avatar}>
+              {note.category[0].toUpperCase()}
+            </Avatar>
+          }
+          action={
             <IconButton
-              className={clsx(classes.expand, {
-                [classes.expandOpen]: expanded,
-              })}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
+              className={classes.deleteBtn}
+              onClick={() => setDeleteConfirmation(true)}
             >
-              <ExpandMore />
+              <DeleteOutlined />
             </IconButton>
-          </CardActions>
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              <Typography paragraph>{note.details}</Typography>
-            </CardContent>
-          </Collapse>
-        </>
-      )}
-    </Card>
+          }
+          title={note.title}
+          subheader={note.category}
+        />
+        <CardContent className={classes.content}>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {note.details.length > 30
+              ? `${note.details.substr(0, 30)}...`
+              : note.details}
+          </Typography>
+        </CardContent>
+        {note.details.length > 30 && (
+          <>
+            <CardActions disableSpacing>
+              <IconButton
+                className={clsx(classes.expand, {
+                  [classes.expandOpen]: expanded,
+                })}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+              >
+                <ExpandMore />
+              </IconButton>
+            </CardActions>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <CardContent>
+                <Typography paragraph>{note.details}</Typography>
+              </CardContent>
+            </Collapse>
+          </>
+        )}
+      </Card>
+      <DeleteConfirmationDialog
+        deleteConfirmation={deleteConfirmation}
+        closeDeleteConfirmation={() => setDeleteConfirmation(false)}
+        handleConfirmDelete={() => deleteNote(note.id)}
+      />
+    </>
   );
 };
