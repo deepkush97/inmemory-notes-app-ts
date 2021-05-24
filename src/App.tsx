@@ -5,22 +5,25 @@ import { Create } from "./pages/create";
 import { View } from "./pages/view";
 import { globalTheme } from "./theme/global";
 import { NotesProvider } from "./context/global";
+import { Layout } from "./components/Layout";
 function App() {
   return (
-    <BrowserRouter>
-      <NotesProvider>
-        <ThemeProvider theme={globalTheme}>
-          <Switch>
-            <Route exact path="/">
-              <View />
-            </Route>
-            <Route path="/create">
-              <Create />
-            </Route>
-          </Switch>
-        </ThemeProvider>
-      </NotesProvider>
-    </BrowserRouter>
+    <NotesProvider>
+      <ThemeProvider theme={globalTheme}>
+        <BrowserRouter>
+          <Layout>
+            <Switch>
+              <Route exact path="/">
+                <View />
+              </Route>
+              <Route path="/create">
+                <Create />
+              </Route>
+            </Switch>
+          </Layout>
+        </BrowserRouter>
+      </ThemeProvider>
+    </NotesProvider>
   );
 }
 
