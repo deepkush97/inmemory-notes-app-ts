@@ -7,25 +7,29 @@ export const NotesProvider: React.FC<React.ReactNode> = ({ children }) => {
     {
       id: 1,
       title: "note 1",
-      details: "this is a description",
+      details:
+        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique dolor consequatur maiores cumque, voluptates quia nesciunt, voluptatum molestiae deleniti vel ipsa, illo debitis expedita! Iure fugit quisquam necessitatibus architecto ratione!",
       category: "personal",
     },
     {
       id: 2,
       title: "note 2",
-      details: "this is a description",
+      details:
+        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur praesentium reprehenderit corrupti quaerat, quos atque ut ab recusandae veritatis eius minima quia voluptate quod alias, quas, tempore temporibus voluptatibus exercitationem? Provident rem ullam perspiciatis veritatis repudiandae deserunt asperiores! Quae, temporibus molestias tenetur tempora non rerum dignissimos nobis, unde quibusdam accusantium quis minus omnis hic possimus nulla. Rem suscipit fugiat impedit.",
       category: "work",
     },
     {
       id: 3,
       title: "note 3",
-      details: "this is a description",
+      details:
+        " adipisicing elit. Tenetur praesentium reprehenderit corrupti quaerat, quos atque ut ab recusandae veritatis eius minima quia voluptate quod alias, quas, tempore temporibus voluptatibus exercitationem?",
       category: "reminder",
     },
     {
       id: 4,
       title: "note 4",
-      details: "this is a description",
+      details:
+        " consequatur maiores cumque, voluptates quia nesciunt, voluptatum molestiae deleniti vel ipsa, illo debitis expedita! Iure fugit quisquam necessitatibus architecto ",
       category: "todo",
     },
   ]);
