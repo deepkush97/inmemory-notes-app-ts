@@ -4,20 +4,22 @@ import Masonry from "react-masonry-css";
 import { NoteCard } from "../components/NoteCard";
 import { NotesContext } from "../context/global";
 
-const useStyle = makeStyles((theme) => ({
-  notesGrid: {
-    display: "flex",
-    marginLeft: -theme.spacing(2),
-    width: "auto",
-  },
-  notesColumnGrid: {
-    paddingLeft: theme.spacing(2),
-    backgroundClip: "padding-box",
-  },
-  divSpaced: {
-    marginBottom: theme.spacing(2),
-  },
-}));
+const useStyle = makeStyles((theme) => {
+  return {
+    notesGrid: {
+      display: "flex",
+      marginLeft: -theme.spacing(2),
+      width: "auto",
+    },
+    notesColumnGrid: {
+      paddingLeft: theme.spacing(2),
+      backgroundClip: "padding-box",
+    },
+    divSpaced: {
+      marginBottom: theme.spacing(2),
+    },
+  };
+});
 
 export const View = () => {
   const { notes } = useContext(NotesContext) as NotesContextType;
