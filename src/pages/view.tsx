@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core";
 import { useContext, useState } from "react";
 import Masonry from "react-masonry-css";
 import { DeleteConfirmationDialog } from "../components/DeleteConfirmationDialog";
+import { NoNotesBanner } from "../components/NoNotesBanner";
 import { NoteCard } from "../components/NoteCard";
 import { NotesContext } from "../context/global";
 
@@ -46,25 +47,31 @@ export const View = () => {
 
   return (
     <>
-      <Masonry
-        breakpointCols={breakpoints}
-        className={classes.notesGrid}
-        columnClassName={classes.notesColumnGrid}
-      >
-        {notes.map((note) => (
-          <div key={note.id} className={classes.divSpaced}>
-            <NoteCard
-              note={note}
-              handleDelete={() => openDeleteConfirmation(note.id)}
-            />
-          </div>
-        ))}
-      </Masonry>
-      <DeleteConfirmationDialog
-        deleteConfirmation={deleteConfirmation}
-        closeDeleteConfirmation={() => setDeleteConfirmation(false)}
-        handleConfirmDelete={handleConfirmDelete}
-      />
+      {notes.length > 0 ? (
+        <>
+          <Masonry
+            breakpointCols={breakpoints}
+            className={classes.notesGrid}
+            columnClassName={classes.notesColumnGrid}
+          >
+            {notes.map((note) => (
+              <div key={note.id} className={classes.divSpaced}>
+                <NoteCard
+                  note={note}
+                  handleDelete={() => openDeleteConfirmation(note.id)}
+                />
+              </div>
+            ))}
+          </Masonry>
+          <DeleteConfirmationDialog
+            deleteConfirmation={deleteConfirmation}
+            closeDeleteConfirmation={() => setDeleteConfirmation(false)}
+            handleConfirmDelete={handleConfirmDelete}
+          />
+        </>
+      ) : (
+        <NoNotesBanner />
+      )}
     </>
   );
 };

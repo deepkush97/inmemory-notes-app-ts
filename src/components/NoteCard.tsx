@@ -107,7 +107,9 @@ export const NoteCard: FC<NoteCardProps> = ({ note, handleDelete }) => {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <CardContent>
-                <Typography paragraph>{note.details}</Typography>
+                <Typography paragraph variant="body2">
+                  {note.details}
+                </Typography>
               </CardContent>
             </Collapse>
           </>
