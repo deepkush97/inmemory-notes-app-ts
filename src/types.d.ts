@@ -7,11 +7,11 @@ interface ICreateNote {
 }
 
 interface INote extends ICreateNote {
-  id: number;
+  id: string;
 }
 
 type NotesContextType = {
   notes: INote[];
-  saveNote: (todo: ICreateNote) => void;
-  deleteNote: (id: number) => void;
+  saveNote: (newNote: ICreateNote) => Promise<void>;
+  deleteNote: (id: string) => Promise<void>;
 };

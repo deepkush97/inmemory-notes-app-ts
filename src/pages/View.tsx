@@ -4,7 +4,7 @@ import Masonry from "react-masonry-css";
 import { DeleteConfirmationDialog } from "../components/DeleteConfirmationDialog";
 import { NoNotesBanner } from "../components/NoNotesBanner";
 import { NoteCard } from "../components/NoteCard";
-import { NotesContext } from "../context/global";
+import { NotesContext } from "../context/NotesContext";
 
 const useStyle = makeStyles((theme) => {
   return {
@@ -25,7 +25,7 @@ const useStyle = makeStyles((theme) => {
 
 export const View = () => {
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
-  const [deletingNoteId, setDeletingNoteId] = useState(0);
+  const [deletingNoteId, setDeletingNoteId] = useState("");
 
   const { notes, deleteNote } = useContext(NotesContext) as NotesContextType;
   const classes = useStyle();
@@ -35,14 +35,14 @@ export const View = () => {
     700: 1,
   };
 
-  const openDeleteConfirmation = (id: number) => {
+  const openDeleteConfirmation = (id: string) => {
     setDeleteConfirmation(true);
     setDeletingNoteId(id);
   };
   const handleConfirmDelete = () => {
     setDeleteConfirmation(false);
     deleteNote(deletingNoteId);
-    setDeletingNoteId(0);
+    setDeletingNoteId("");
   };
 
   return (
