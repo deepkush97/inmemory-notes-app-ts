@@ -1,34 +1,35 @@
-import { makeStyles } from "@material-ui/core";
-import { FC } from "react";
+import { CssBaseline } from "@material-ui/core";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { FC, useState } from "react";
 import { NavBar } from "./NavBar";
 import { SideBar } from "./SideBar";
 
-const useStyles = makeStyles((theme) => {
-  return {
-    page: {
-      background: "#f9f9f9",
-      width: "100%",
-      minHeight: "92vh",
-      padding: theme.spacing(3),
-    },
+const useStyles = makeStyles((theme) =>
+  createStyles({
     root: {
       display: "flex",
     },
     toolbar: theme.mixins.toolbar,
-  };
-});
+    content: {
+      flexGrow: 1,
+      padding: theme.spacing(3),
+    },
+  })
+);
 
 export const Layout: FC = ({ children }) => {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
 
   return (
     <div className={classes.root}>
-      <NavBar />
-      <SideBar />
-      <div className={classes.page}>
-        <div className={classes.toolbar}></div>
+      <CssBaseline />
+      <NavBar openSideBar={() => setOpen(true)} open={open} />
+      <SideBar closeSideBar={() => setOpen(false)} open={open} />
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
         {children}
-      </div>
+      </main>
     </div>
   );
 };
