@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/deepkush97.github.io/inmemory-notes-app-ts/static/css/main.da23f463.chunk.css",
-    "main.js": "/deepkush97.github.io/inmemory-notes-app-ts/static/js/main.5c94b401.chunk.js",
-    "main.js.map": "/deepkush97.github.io/inmemory-notes-app-ts/static/js/main.5c94b401.chunk.js.map",
-    "runtime-main.js": "/deepkush97.github.io/inmemory-notes-app-ts/static/js/runtime-main.24c94905.js",
-    "runtime-main.js.map": "/deepkush97.github.io/inmemory-notes-app-ts/static/js/runtime-main.24c94905.js.map",
-    "static/js/2.7356c045.chunk.js": "/deepkush97.github.io/inmemory-notes-app-ts/static/js/2.7356c045.chunk.js",
-    "static/js/2.7356c045.chunk.js.map": "/deepkush97.github.io/inmemory-notes-app-ts/static/js/2.7356c045.chunk.js.map",
-    "index.html": "/deepkush97.github.io/inmemory-notes-app-ts/index.html",
-    "static/css/main.da23f463.chunk.css.map": "/deepkush97.github.io/inmemory-notes-app-ts/static/css/main.da23f463.chunk.css.map",
-    "static/js/2.7356c045.chunk.js.LICENSE.txt": "/deepkush97.github.io/inmemory-notes-app-ts/static/js/2.7356c045.chunk.js.LICENSE.txt"
+    "main.css": "/inmemory-notes-app-ts/static/css/main.da23f463.chunk.css",
+    "main.js": "/inmemory-notes-app-ts/static/js/main.5c94b401.chunk.js",
+    "main.js.map": "/inmemory-notes-app-ts/static/js/main.5c94b401.chunk.js.map",
+    "runtime-main.js": "/inmemory-notes-app-ts/static/js/runtime-main.9534fbc7.js",
+    "runtime-main.js.map": "/inmemory-notes-app-ts/static/js/runtime-main.9534fbc7.js.map",
+    "static/js/2.7356c045.chunk.js": "/inmemory-notes-app-ts/static/js/2.7356c045.chunk.js",
+    "static/js/2.7356c045.chunk.js.map": "/inmemory-notes-app-ts/static/js/2.7356c045.chunk.js.map",
+    "index.html": "/inmemory-notes-app-ts/index.html",
+    "static/css/main.da23f463.chunk.css.map": "/inmemory-notes-app-ts/static/css/main.da23f463.chunk.css.map",
+    "static/js/2.7356c045.chunk.js.LICENSE.txt": "/inmemory-notes-app-ts/static/js/2.7356c045.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.24c94905.js",
+    "static/js/runtime-main.9534fbc7.js",
     "static/js/2.7356c045.chunk.js",
     "static/css/main.da23f463.chunk.css",
     "static/js/main.5c94b401.chunk.js"
