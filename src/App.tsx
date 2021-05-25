@@ -10,7 +10,7 @@ function App() {
   return (
     <NotesProvider>
       <ThemeProvider theme={globalTheme}>
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Layout>
             <Switch>
               <Route exact path="/">
