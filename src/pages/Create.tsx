@@ -15,7 +15,7 @@ import {
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import { FormEvent, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { NotesContext } from "../context/global";
+import { NotesContext } from "../context/NotesContext";
 
 const useStyles = makeStyles({
   field: {

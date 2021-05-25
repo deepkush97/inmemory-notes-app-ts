@@ -4,7 +4,7 @@ import { ThemeProvider } from "@material-ui/core";
 import { Create } from "./pages/Create";
 import { View } from "./pages/View";
 import { globalTheme } from "./theme/global";
-import { NotesProvider } from "./context/global";
+import { NotesProvider } from "./context/NotesContext";
 import { Layout } from "./components/Layout";
 function App() {
   return (
