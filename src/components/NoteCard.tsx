@@ -59,7 +59,7 @@ const useStyles = makeStyles<Theme, { category: CategoryType }>(
 export const NoteCard: FC<NoteCardProps> = ({ note, handleDelete }) => {
   const classes = useStyles(note);
   const [expanded, setExpanded] = useState(false);
-
+  const SHORT_DETAILS_LENGTH = 30;
   const handleExpandClick = () => {
     setExpanded((prev) => !prev);
   };
@@ -84,14 +84,16 @@ export const NoteCard: FC<NoteCardProps> = ({ note, handleDelete }) => {
           title={note.title}
           subheader={note.category}
         />
-        <CardContent className={classes.content}>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {note.details.length > 30
-              ? `${note.details.substr(0, 30)}...`
-              : note.details}
-          </Typography>
-        </CardContent>
-        {note.details.length > 30 && (
+        {!expanded && (
+          <CardContent className={classes.content}>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {note.details.length > SHORT_DETAILS_LENGTH
+                ? `${note.details.substr(0, SHORT_DETAILS_LENGTH)}...`
+                : note.details}
+            </Typography>
+          </CardContent>
+        )}
+        {note.details.length > SHORT_DETAILS_LENGTH && (
           <>
             <CardActions disableSpacing>
               <IconButton
