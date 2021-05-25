@@ -1,7 +1,7 @@
 {
   "name": "inmemory-notes-app-ts",
   "version": "0.1.0",
-  "homepage": "deepkush97.github.io/inmemory-notes-app",
+  "homepage": "https://deepkush97.github.io/inmemory-notes-app-ts",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.4",
