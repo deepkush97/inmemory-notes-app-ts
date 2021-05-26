@@ -1,7 +1,7 @@
 import {
-  Divider,
   Drawer,
   IconButton,
+  Link,
   List,
   ListItem,
   ListItemIcon,
@@ -13,11 +13,14 @@ import {
   AddCircleOutlineOutlined,
   ChevronLeft,
   SubjectOutlined,
+  FlashOff,
+  FlashOn,
   GitHub,
 } from "@material-ui/icons";
 import clsx from "clsx";
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import { GlobalThemeContext } from "../theme/GlobalTheme";
 
 const drawerWidth = 240;
 
@@ -70,7 +73,9 @@ export const SideBar: FC<SideBarProps> = ({ closeSideBar, open }) => {
   const classes = useStyles();
   const history = useHistory();
   const location = useLocation();
-
+  const { currentTheme, toggleTheme } = useContext(
+    GlobalThemeContext
+  ) as GlobalThemeContextType;
   const menuItems = [
     {
       text: "My Notes",
@@ -105,7 +110,6 @@ export const SideBar: FC<SideBarProps> = ({ closeSideBar, open }) => {
           <ChevronLeft />
         </IconButton>
       </div>
-      <Divider />
       <List>
         {menuItems.map((item) => (
           <ListItem
@@ -121,6 +125,18 @@ export const SideBar: FC<SideBarProps> = ({ closeSideBar, open }) => {
       </List>
 
       <List className={classes.bottomList}>
+        <ListItem button onClick={toggleTheme}>
+          <ListItemIcon>
+            {currentTheme === "light" ? (
+              <FlashOff color="primary" />
+            ) : (
+              <FlashOn color="primary" />
+            )}
+          </ListItemIcon>
+          <ListItemText
+            primary={`Switch to ${currentTheme === "light" ? "Dark" : "Light"}`}
+          />
+        </ListItem>
         <ListItem button onClick={() => {}}>
           <Link
             href="https://github.com/deepkush97/inmemory-notes-app-ts"
