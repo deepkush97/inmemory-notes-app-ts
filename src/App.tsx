@@ -1,15 +1,14 @@
 import React from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
-import { ThemeProvider } from "@material-ui/core";
 import { Create } from "./pages/Create";
 import { View } from "./pages/View";
-import { globalTheme } from "./theme/global";
+import { GlobalThemeProvider } from "./theme/GlobalTheme";
 import { NotesProvider } from "./context/NotesContext";
 import { Layout } from "./components/Layout";
 function App() {
   return (
     <NotesProvider>
-      <ThemeProvider theme={globalTheme}>
+      <GlobalThemeProvider>
         <HashRouter basename={process.env.PUBLIC_URL}>
           <Layout>
             <Switch>
@@ -22,7 +21,7 @@ function App() {
             </Switch>
           </Layout>
         </HashRouter>
-      </ThemeProvider>
+      </GlobalThemeProvider>
     </NotesProvider>
   );
 }

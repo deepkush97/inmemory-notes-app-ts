@@ -15,3 +15,8 @@ type NotesContextType = {
   saveNote: (newNote: ICreateNote) => Promise<void>;
   deleteNote: (id: string) => Promise<void>;
 };
+
+type GlobalThemeContextType = {
+  currentTheme: "dark" | "light";
+  toggleTheme: () => void;
+};
