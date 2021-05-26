@@ -6,6 +6,7 @@ const defaultStore: NotesContextType = {
   notes: [],
   saveNote: async (newNote: ICreateNote) => new Promise(() => {}),
   deleteNote: async (id: string) => new Promise(() => {}),
+  updateNote: async (updatedNote: INote) => new Promise(() => {}),
 };
 
 export const NotesContext = React.createContext(defaultStore);
@@ -35,7 +36,11 @@ export const NotesProvider: FC = ({ children }): React.ReactElement => {
       syncWithDb();
     },
     deleteNote: async (id: string) => {
-      notesRepository.notes.delete(String(id));
+      await notesRepository.notes.delete(String(id));
+      syncWithDb();
+    },
+    updateNote: async (updatedNote: INote) => {
+      await notesRepository.notes.update(updatedNote.id, updatedNote);
       syncWithDb();
     },
   };
