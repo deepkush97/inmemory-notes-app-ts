@@ -13,6 +13,7 @@ import {
   AddCircleOutlineOutlined,
   ChevronLeft,
   SubjectOutlined,
+  GitHub,
 } from "@material-ui/icons";
 import clsx from "clsx";
 import React, { FC } from "react";
@@ -53,7 +54,10 @@ const useStyles = makeStyles((theme) => {
       paddingLeft: theme.spacing(2),
     },
     active: {
-      background: "#f4f4f4",
+      background: theme.palette.background.default,
+    },
+    bottomList: {
+      marginTop: "auto",
     },
   };
 });
@@ -70,12 +74,12 @@ export const SideBar: FC<SideBarProps> = ({ closeSideBar, open }) => {
   const menuItems = [
     {
       text: "My Notes",
-      icon: <SubjectOutlined color="secondary" />,
+      icon: <SubjectOutlined color="primary" />,
       path: "/",
     },
     {
       text: "Create Note",
-      icon: <AddCircleOutlineOutlined color="secondary" />,
+      icon: <AddCircleOutlineOutlined color="primary" />,
       path: "/create",
     },
   ];
@@ -114,6 +118,21 @@ export const SideBar: FC<SideBarProps> = ({ closeSideBar, open }) => {
             <ListItemText primary={item.text} />
           </ListItem>
         ))}
+      </List>
+
+      <List className={classes.bottomList}>
+        <ListItem button onClick={() => {}}>
+          <Link
+            href="https://github.com/deepkush97/inmemory-notes-app-ts"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <ListItemIcon>
+              <GitHub color="primary" />
+            </ListItemIcon>
+          </Link>
+          <ListItemText primary="Github Repo" />
+        </ListItem>
       </List>
     </Drawer>
   );
