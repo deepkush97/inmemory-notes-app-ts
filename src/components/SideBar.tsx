@@ -1,7 +1,7 @@
 import {
-  Divider,
   Drawer,
   IconButton,
+  Link,
   List,
   ListItem,
   ListItemIcon,
@@ -13,10 +13,14 @@ import {
   AddCircleOutlineOutlined,
   ChevronLeft,
   SubjectOutlined,
+  FlashOff,
+  FlashOn,
+  GitHub,
 } from "@material-ui/icons";
 import clsx from "clsx";
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import { GlobalThemeContext } from "../theme/GlobalTheme";
 
 const drawerWidth = 240;
 
@@ -53,7 +57,10 @@ const useStyles = makeStyles((theme) => {
       paddingLeft: theme.spacing(2),
     },
     active: {
-      background: "#f4f4f4",
+      background: theme.palette.background.default,
+    },
+    bottomList: {
+      marginTop: "auto",
     },
   };
 });
@@ -66,16 +73,18 @@ export const SideBar: FC<SideBarProps> = ({ closeSideBar, open }) => {
   const classes = useStyles();
   const history = useHistory();
   const location = useLocation();
-
+  const { currentTheme, toggleTheme } = useContext(
+    GlobalThemeContext
+  ) as GlobalThemeContextType;
   const menuItems = [
     {
       text: "My Notes",
-      icon: <SubjectOutlined color="secondary" />,
+      icon: <SubjectOutlined color="primary" />,
       path: "/",
     },
     {
       text: "Create Note",
-      icon: <AddCircleOutlineOutlined color="secondary" />,
+      icon: <AddCircleOutlineOutlined color="primary" />,
       path: "/create",
     },
   ];
@@ -101,7 +110,6 @@ export const SideBar: FC<SideBarProps> = ({ closeSideBar, open }) => {
           <ChevronLeft />
         </IconButton>
       </div>
-      <Divider />
       <List>
         {menuItems.map((item) => (
           <ListItem
@@ -114,6 +122,33 @@ export const SideBar: FC<SideBarProps> = ({ closeSideBar, open }) => {
             <ListItemText primary={item.text} />
           </ListItem>
         ))}
+      </List>
+
+      <List className={classes.bottomList}>
+        <ListItem button onClick={toggleTheme}>
+          <ListItemIcon>
+            {currentTheme === "light" ? (
+              <FlashOff color="primary" />
+            ) : (
+              <FlashOn color="primary" />
+            )}
+          </ListItemIcon>
+          <ListItemText
+            primary={`Switch to ${currentTheme === "light" ? "Dark" : "Light"}`}
+          />
+        </ListItem>
+        <ListItem button onClick={() => {}}>
+          <Link
+            href="https://github.com/deepkush97/inmemory-notes-app-ts"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <ListItemIcon>
+              <GitHub color="primary" />
+            </ListItemIcon>
+          </Link>
+          <ListItemText primary="Github Repo" />
+        </ListItem>
       </List>
     </Drawer>
   );
