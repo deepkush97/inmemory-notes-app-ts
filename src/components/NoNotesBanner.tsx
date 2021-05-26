@@ -23,6 +23,9 @@ const useStyle = makeStyles((theme) => {
       justifyContent: "center",
       alignItems: "center",
     },
+    contentText: {
+      textAlign: "center",
+    },
   };
 });
 export const NoNotesBanner = () => {
@@ -31,7 +34,7 @@ export const NoNotesBanner = () => {
   const history = useHistory();
   return (
     <Container className={classes.noNotesContainer}>
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h5" gutterBottom className={classes.contentText}>
         There is no notes here.
       </Typography>
       <Button variant="outlined" onClick={() => history.push("/create")}>

@@ -89,6 +89,12 @@ export const SideBar: FC<SideBarProps> = ({ closeSideBar, open }) => {
       path: "/create",
     },
   ];
+
+  const handleClick = (callback: () => void) => {
+    closeSideBar();
+    callback();
+  };
+
   return (
     <Drawer
       variant="permanent"
@@ -116,7 +122,7 @@ export const SideBar: FC<SideBarProps> = ({ closeSideBar, open }) => {
           <ListItem
             button
             key={item.text}
-            onClick={() => history.push(item.path)}
+            onClick={() => handleClick(() => history.push(item.path))}
             className={location.pathname === item.path ? classes.active : ""}
           >
             <ListItemIcon>{item.icon}</ListItemIcon>
@@ -126,7 +132,7 @@ export const SideBar: FC<SideBarProps> = ({ closeSideBar, open }) => {
       </List>
 
       <List className={classes.bottomList}>
-        <ListItem button onClick={toggleTheme}>
+        <ListItem button onClick={() => handleClick(toggleTheme)}>
           <ListItemIcon>
             {currentTheme === "light" ? (
               <FlashOff color="primary" />
