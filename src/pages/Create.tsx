@@ -17,12 +17,16 @@ import { FormEvent, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { NotesContext } from "../context/NotesContext";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   field: {
     marginBottom: 20,
     display: "block",
   },
-});
+  submitButton: {
+    marginLeft: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
+}));
 
 export const Create = () => {
   const classes = useStyles();
@@ -112,6 +116,7 @@ export const Create = () => {
             type="submit"
             color="primary"
             variant="contained"
+            className={classes.submitButton}
             endIcon={<KeyboardArrowRightIcon />}
           >
             Submit
