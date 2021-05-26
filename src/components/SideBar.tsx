@@ -54,7 +54,8 @@ const useStyles = makeStyles((theme) => {
       ...theme.mixins.toolbar,
     },
     title: {
-      paddingLeft: theme.spacing(2),
+      paddingLeft: theme.spacing(1),
+      paddingRight: theme.spacing(1),
     },
     active: {
       background: theme.palette.background.default,
