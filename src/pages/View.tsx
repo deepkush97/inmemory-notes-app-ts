@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core";
 import { useContext, useState } from "react";
 import Masonry from "react-masonry-css";
 import { DeleteConfirmationDialog } from "../components/DeleteConfirmationDialog";
+import { EditNoteDialog } from "../components/EditNoteDialog";
 import { NoNotesBanner } from "../components/NoNotesBanner";
 import { NoteCard } from "../components/NoteCard";
 import { NotesContext } from "../context/NotesContext";
@@ -26,8 +27,12 @@ const useStyle = makeStyles((theme) => {
 export const View = () => {
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [deletingNoteId, setDeletingNoteId] = useState("");
+  const [editDialog, setEditDialog] = useState(false);
+  const [editingNote, setEditingNote] = useState<INote | undefined>();
 
-  const { notes, deleteNote } = useContext(NotesContext) as NotesContextType;
+  const { notes, deleteNote, updateNote } = useContext(
+    NotesContext
+  ) as NotesContextType;
   const classes = useStyle();
   const breakpoints = {
     default: 3,
@@ -45,6 +50,23 @@ export const View = () => {
     setDeletingNoteId("");
   };
 
+  const openEditNote = (id: string) => {
+    const currentNote = notes.find((note) => note.id === id);
+    if (currentNote) {
+      setEditDialog(true);
+      setEditingNote(currentNote);
+    }
+  };
+  const handleUpdateNote = (updatedNote: INote) => {
+    setEditDialog(false);
+    updateNote(updatedNote);
+    setDeletingNoteId("");
+  };
+  const closeEditDialog = () => {
+    setEditingNote(undefined);
+    setEditDialog(false);
+  };
+
   return (
     <>
       {notes.length > 0 ? (
@@ -59,6 +81,7 @@ export const View = () => {
                 <NoteCard
                   note={note}
                   handleDelete={() => openDeleteConfirmation(note.id)}
+                  handleEdit={(id: string) => openEditNote(id)}
                 />
               </div>
             ))}
@@ -67,6 +90,12 @@ export const View = () => {
             deleteConfirmation={deleteConfirmation}
             closeDeleteConfirmation={() => setDeleteConfirmation(false)}
             handleConfirmDelete={handleConfirmDelete}
+          />
+          <EditNoteDialog
+            editDialog={editDialog}
+            note={editingNote!}
+            closeEditDialog={closeEditDialog}
+            handleUpdateNote={handleUpdateNote}
           />
         </>
       ) : (

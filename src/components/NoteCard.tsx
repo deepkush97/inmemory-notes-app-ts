@@ -12,13 +12,14 @@ import {
   Typography,
 } from "@material-ui/core";
 import { blue, green, pink, red, yellow } from "@material-ui/core/colors";
-import { DeleteOutlined, ExpandMore } from "@material-ui/icons";
+import { DeleteOutlined, Edit, ExpandMore } from "@material-ui/icons";
 import clsx from "clsx";
 import { FC, useState } from "react";
 
 interface NoteCardProps {
   note: INote;
   handleDelete: () => void;
+  handleEdit: (id: string) => void;
 }
 const useStyles = makeStyles<Theme, { category: CategoryType }>(
   (theme: Theme) =>
@@ -56,7 +57,11 @@ const useStyles = makeStyles<Theme, { category: CategoryType }>(
     })
 );
 
-export const NoteCard: FC<NoteCardProps> = ({ note, handleDelete }) => {
+export const NoteCard: FC<NoteCardProps> = ({
+  note,
+  handleDelete,
+  handleEdit,
+}) => {
   const classes = useStyles(note);
   const [expanded, setExpanded] = useState(false);
   const SHORT_DETAILS_LENGTH = 30;
@@ -74,12 +79,17 @@ export const NoteCard: FC<NoteCardProps> = ({ note, handleDelete }) => {
             </Avatar>
           }
           action={
-            <IconButton
-              className={classes.deleteBtn}
-              onClick={() => handleDelete()}
-            >
-              <DeleteOutlined />
-            </IconButton>
+            <>
+              <IconButton onClick={() => handleEdit(note.id)}>
+                <Edit />
+              </IconButton>
+              <IconButton
+                className={classes.deleteBtn}
+                onClick={() => handleDelete()}
+              >
+                <DeleteOutlined />
+              </IconButton>
+            </>
           }
           title={note.title}
           subheader={note.category}

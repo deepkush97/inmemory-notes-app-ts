@@ -14,6 +14,7 @@ type NotesContextType = {
   notes: INote[];
   saveNote: (newNote: ICreateNote) => Promise<void>;
   deleteNote: (id: string) => Promise<void>;
+  updateNote: (updatedNote: INote) => Promise<void>;
 };
 
 type GlobalThemeContextType = {
