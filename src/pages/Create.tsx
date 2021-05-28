@@ -15,6 +15,7 @@ import {
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import { FormEvent, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { MarkdownEditor } from "../components/MarkdownEditor";
 import { NotesContext } from "../context/NotesContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
   submitButton: {
     marginLeft: theme.spacing(1),
     marginBottom: theme.spacing(1),
+  },
+  textEditor: {
+    marginBottom: 20,
+    fontSize: theme.typography.pxToRem(16),
   },
 }));
 
@@ -70,15 +75,11 @@ export const Create = () => {
             required
             error={titleError}
           />
-          <TextField
-            className={classes.field}
-            onChange={(e) => setDetails(e.target.value)}
-            label="Details"
-            variant="outlined"
-            multiline
-            rows={4}
-            fullWidth
-            required
+
+          <MarkdownEditor
+            value={details}
+            onChangeHandler={(value) => setDetails(value)}
+            placeholder="Details *"
             error={detailsError}
           />
           <FormControl className={classes.field}>

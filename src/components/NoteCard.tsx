@@ -15,7 +15,7 @@ import { blue, green, pink, red, yellow } from "@material-ui/core/colors";
 import { DeleteOutlined, Edit, ExpandMore } from "@material-ui/icons";
 import clsx from "clsx";
 import { FC, useState } from "react";
-
+import marked from "../helpers/marked";
 interface NoteCardProps {
   note: INote;
   handleDelete: () => void;
@@ -97,9 +97,15 @@ export const NoteCard: FC<NoteCardProps> = ({
         {!expanded && (
           <CardContent className={classes.content}>
             <Typography variant="body2" color="textSecondary" component="p">
-              {note.details.length > SHORT_DETAILS_LENGTH
-                ? `${note.details.substr(0, SHORT_DETAILS_LENGTH)}...`
-                : note.details}
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: marked(
+                    note.details.length > SHORT_DETAILS_LENGTH
+                      ? `${note.details.substr(0, SHORT_DETAILS_LENGTH)}...`
+                      : note.details
+                  ),
+                }}
+              ></span>
             </Typography>
           </CardContent>
         )}
@@ -119,9 +125,9 @@ export const NoteCard: FC<NoteCardProps> = ({
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <CardContent>
-                <Typography paragraph variant="body2">
-                  {note.details}
-                </Typography>
+                <p
+                  dangerouslySetInnerHTML={{ __html: marked(note.details) }}
+                ></p>
               </CardContent>
             </Collapse>
           </>

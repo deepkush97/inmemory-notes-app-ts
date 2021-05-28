@@ -15,7 +15,7 @@ import {
 } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import React, { FC, FormEvent, useState, useEffect } from "react";
-
+import { MarkdownEditor } from "./MarkdownEditor";
 const useStyles = makeStyles((theme) => ({
   field: {
     marginBottom: 20,
@@ -96,16 +96,10 @@ export const EditNoteDialog: FC<EditNoteDialogProps> = ({
             required
             error={titleError}
           />
-          <TextField
-            className={classes.field}
-            onChange={(e) => setDetails(e.target.value)}
-            label="Details"
-            defaultValue={details}
-            variant="outlined"
-            multiline
-            rows={4}
-            fullWidth
-            required
+          <MarkdownEditor
+            value={details}
+            onChangeHandler={(value) => setDetails(value)}
+            placeholder="Details *"
             error={detailsError}
           />
           <FormControl>
